@@ -31,7 +31,7 @@ const PersonalDetails = () => {
 
             {show && (
                 <form>
-                    <label htmlFor="full-name">Full name
+                    <label htmlFor="full-name">Full Name
                         <input type="text" id="full-name" name="fullName" value={fullName} onChange={e => handleFullName(e)}/>
                     </label>
 
@@ -39,7 +39,7 @@ const PersonalDetails = () => {
                         <input type="email" id="email" name="email" value={email} onChange={e => handleEmail(e)}/>
                     </label>
 
-                    <label htmlFor="phone-number">Phone number
+                    <label htmlFor="phone-number">Phone Number
                         <input type="tel" id="phone-number" name="phoneNumber" value={phoneNumber} onChange={e => handlePhoneNumber(e)}/>
                     </label>
 
