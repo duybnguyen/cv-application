@@ -15,13 +15,28 @@ const EducationInputs = ({toggleShowForm, saveEducationList, currentEducation}) 
 
     useEffect(() => {
         if (currentEducation) {
-            setSchoolName(currentEducation.schoolName);
-            setDegree(currentEducation.degree);
-            setStartDate(currentEducation.startDate);
-            setEndDate(currentEducation.endDate);
+            setSchoolName(currentEducation.schoolName || '');
+            setDegree(currentEducation.degree || '');
+            setStartDate(currentEducation.startDate || '');
+            setEndDate(currentEducation.endDate || '');
         }
     }, [currentEducation]);
 
+    const saveEducation = () => {
+        saveEducationList({
+            schoolName,
+            degree,
+            startDate,
+            endDate,
+            id: currentEducation ? currentEducation.id : uuid()
+        });
+        clearForms();
+        toggleShowForm()
+    };
+
+    
+    
+    
     const clearForms = () => {
         setSchoolName('')
         setDegree('')
@@ -36,7 +51,7 @@ const EducationInputs = ({toggleShowForm, saveEducationList, currentEducation}) 
                 <input type="text" id="school-name" value={schoolName} onChange={e => handleSchoolName(e)}/>
             </label>
             <label htmlFor="degree">Degree/Field of Study
-                <input type="text" id="degree" value={degree} onChange={e => handleDegree(e)} />
+                <input type="text" id="degee" value={degree} onChange={e => handleDegree(e)} />
             </label>
             <label htmlFor="start-date">Degree/Field of Study
                 <input type="date" id="start-date" value={startDate} onChange={e => handleStartDate(e)} />
@@ -46,13 +61,7 @@ const EducationInputs = ({toggleShowForm, saveEducationList, currentEducation}) 
             </label>
             <div className="btn-container">
                 <button onClick={() => clearForms()}>Cancel</button>
-                <button onClick={() => saveEducationList({
-                    schoolName,
-                    degree,
-                    startDate,
-                    endDate,
-                    id: uuid()
-                })}>Save</button>
+                <button onClick={saveEducation}>Save</button>
             </div>
         </div>
     )

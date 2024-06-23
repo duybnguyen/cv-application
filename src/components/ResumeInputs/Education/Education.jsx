@@ -33,7 +33,8 @@ const Education = () => {
         toggleShowForm();
     };
 
-    const deleteEducation = id => {
+    const deleteEducation = (id, e) => {
+        e.stopPropagation()
         const filteredEdu = educationList.filter(edu => edu.id !== id);
         setEducationList(filteredEdu);
     };
@@ -67,7 +68,7 @@ const Education = () => {
                                         <div key={edu.id} className="education-container">
                                             <h3 onClick={() => editEducation(edu)}>{edu.schoolName}</h3>
                                             
-                                            <button onClick={() => deleteEducation(edu.id)}>Delete</button>
+                                            <button onClick={(e) => deleteEducation(edu.id, e)}>Delete</button>
                                         </div>
                                     ))}
                                 </div>
