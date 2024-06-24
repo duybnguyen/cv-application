@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
 
-const ExperienceInputs = ({ toggleShowForm, saveExperienceList, currentExperience, saveDisplayExperience, setShowForm }) => {
+const ExperienceInputs = ({ saveExperienceList, currentExperience, saveDisplayExperience, setShowForm }) => {
     const [companyName, setCompanyName] = useState('');
     const [positionTitle, setPositionTitle] = useState('');
     const [startDate, setStartDate] = useState('');

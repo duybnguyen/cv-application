@@ -1,7 +1,8 @@
 import { useState } from "react";
-import ResumeInputs from "./components/ResumeInputs/ResumeInputs";
 import DisplayResume from "./components/DisplayResume/DisplayResume";
-
+import PersonalDetails from "./components/PersonalDetails/PersonalDetails";
+import Education from "./components/Education/Education";
+import Experience from "./components/Experience/Experience";
 const App = () => {
   const [personalDetailsInfo, setPersonalDetailsInfo] = useState({});
   const [educationInfo, setEducationInfo] = useState([]);
@@ -37,11 +38,11 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <ResumeInputs
-        saveDisplayPersonal={saveDisplayPersonal}
-        saveDisplayEducation={saveDisplayEducation}
-        saveDisplayExperience={saveDisplayExperience}
-      />
+      <div className="resume-inputs">
+        <PersonalDetails saveDisplayPersonal={saveDisplayPersonal} />
+        <Education saveDisplayEducation={saveDisplayEducation} />
+        <Experience saveDisplayExperience={saveDisplayExperience} />
+      </div>
       <DisplayResume
         personalDetails={personalDetailsInfo}
         education={educationInfo}
