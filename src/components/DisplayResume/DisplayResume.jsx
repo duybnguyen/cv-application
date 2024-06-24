@@ -1,4 +1,4 @@
-const DisplayResume = (personalDetails, education, experience) => {
+const DisplayResume = ({ personalDetails, education, experience }) => {
     return (
         <div className="resume-container">
             <div className="personal-details-container">
@@ -10,8 +10,7 @@ const DisplayResume = (personalDetails, education, experience) => {
                 </div>
             </div>
 
-
-            {education && (
+            {education.length > 0 && (
                 <div className="educations-container">
                     <h2>Education</h2>
                     <div className="line-break"></div>
@@ -19,7 +18,7 @@ const DisplayResume = (personalDetails, education, experience) => {
                         <div className="education-container" key={edu.id}>
                             <div className="top">
                                 <h3>{edu.schoolName}</h3>
-                                <p>`{edu.startDate} - {edu.endDate}``</p>
+                                <p>{`${edu.startDate} - ${edu.endDate}`}</p>
                             </div>
                             <p>{edu.degree}</p>
                         </div>
@@ -27,7 +26,7 @@ const DisplayResume = (personalDetails, education, experience) => {
                 </div>
             )}
 
-            {experience && (
+            {experience.length > 0 && (
                 <div className="experiences-container">
                     <h2>Experiences</h2>
                     <div className="line-break"></div>
@@ -36,7 +35,7 @@ const DisplayResume = (personalDetails, education, experience) => {
                             <div className="top">
                                 <div className="flex">
                                     <h3>{exp.positionTitle}</h3>
-                                    <p>`{exp.startDate} - {exp.endDate}`</p>
+                                    <p>{`${exp.startDate} - ${exp.endDate}`}</p>
                                 </div>
                                 <div className="flex">
                                     <p>{exp.companyName}</p>
@@ -49,7 +48,7 @@ const DisplayResume = (personalDetails, education, experience) => {
                 </div>
             )}
         </div>
-    )
+    );
 }
 
-export default DisplayResume
+export default DisplayResume;

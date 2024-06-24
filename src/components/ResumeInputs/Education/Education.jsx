@@ -2,7 +2,7 @@ import { useState } from "react";
 import EducationInputs from "./EducationInputs/EducationInputs";
 import './Education.scss';
 
-const Education = () => {
+const Education = ({saveDisplayEducation}) => {
     const [show, setShow] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [educationList, setEducationList] = useState([]);
@@ -13,8 +13,9 @@ const Education = () => {
     };
 
     const toggleShowForm = () => {
-        setShowForm(prev => !prev);
-    };
+        setShowForm(prev => !prev)
+    }
+
 
     const saveEducationList = (obj) => {
         if (currentEducation) {
@@ -56,9 +57,12 @@ const Education = () => {
                 <>
                     {showForm ? (
                         <EducationInputs 
-                            toggleShowForm={toggleShowForm}
+                            setShowForm={setShowForm}
                             saveEducationList={saveEducationList}
                             currentEducation={currentEducation}
+                            saveDisplayEducation={saveDisplayEducation}
+                            setCurrentEducation={setCurrentEducation}
+                            
                         />
                     ) : (
                         <>
@@ -73,7 +77,7 @@ const Education = () => {
                                     ))}
                                 </div>
                             )}
-                            <button onClick={toggleShowForm}>+ Education</button>
+                            <button onClick={() => setShowForm(true)}>+ Education</button>
                         </>
                     )}
                 </>

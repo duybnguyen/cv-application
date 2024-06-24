@@ -1,56 +1,71 @@
+import { useEffect, useState } from "react";
 
-import { useState } from "react"
+const PersonalDetails = ({ saveDisplayPersonal }) => {
+    const [show, setShow] = useState(false);
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
 
-const PersonalDetails = () => {
-    const [show, setShow] = useState(false)
-    const [fullName, setFullName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [address, setAddress] = useState('')
 
     const toggleShow = () => {
-        setShow(prevShow => !prevShow)
+        setShow(prevShow => !prevShow);
+    };
+
+    const save = () => {
+        saveDisplayPersonal({
+            fullName,
+            email,
+            phoneNumber,
+            address
+        })
     }
 
-    const handleFullName = e => setFullName(e.target.value)
-    const handleEmail = e => setEmail(e.target.value)
-    const handlePhoneNumber = e => setPhoneNumber(e.target.value)
-    const handleAddress = e => setAddress(e.target.value)
-    
-    
+    const handleFullName = ({ target }) => {
+        setFullName(target.value)
+        save()
+    };
+    const handleEmail = ({ target }) => {
+        setEmail(target.value);
+        save()
+    }
+    const handlePhoneNumber = ({ target }) => {
+        setPhoneNumber(target.value);
+        save()
+    }
+        
+    const handleAddress = ({ target }) => {
+        setAddress(target.value)
+        save()
+    }
 
     return (
         <div className="show-container">
-            <div 
-                className="show-toggle"
-                onClick={() => toggleShow()}>
+            <div className="show-toggle" onClick={toggleShow}>
                 <h2>Personal Details</h2>
-
-
             </div>
 
             {show && (
                 <form>
                     <label htmlFor="full-name">Full Name
-                        <input type="text" id="full-name" name="fullName" value={fullName} onChange={e => handleFullName(e)}/>
+                        <input type="text" id="full-name" name="fullName" value={fullName} onChange={handleFullName} />
                     </label>
 
                     <label htmlFor="email">Email
-                        <input type="email" id="email" name="email" value={email} onChange={e => handleEmail(e)}/>
+                        <input type="email" id="email" name="email" value={email} onChange={handleEmail} />
                     </label>
 
                     <label htmlFor="phone-number">Phone Number
-                        <input type="tel" id="phone-number" name="phoneNumber" value={phoneNumber} onChange={e => handlePhoneNumber(e)}/>
+                        <input type="tel" id="phone-number" name="phoneNumber" value={phoneNumber} onChange={handlePhoneNumber} />
                     </label>
 
                     <label htmlFor="address">Address
-                        <input type="text" id="address" name="address" value={address} onChange={e => handleAddress(e)}/>
+                        <input type="text" id="address" name="address" value={address} onChange={handleAddress} />
                     </label>
                 </form>
             )}
-    
         </div>
-    )   
-}
+    );
+};
 
-export default PersonalDetails
+export default PersonalDetails;
