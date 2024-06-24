@@ -2,7 +2,7 @@ import { useState } from "react";
 import ExperienceInputs from "./ExperienceInputs/ExperienceInputs";
 import "./Experience.scss"
 
-const Experience = () => {
+const Experience = ({saveDisplayExperience}) => {
     const [show, setShow] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [experienceList, setExperienceList] = useState([]);
@@ -56,9 +56,10 @@ const Experience = () => {
                 <>
                     {showForm ? (
                         <ExperienceInputs 
-                            toggleShowForm={toggleShowForm}
+                            setShowForm={setShowForm}
                             saveExperienceList={saveExperienceList}
                             currentExperience={currentExperience}
+                            saveDisplayExperience={saveDisplayExperience}
                         />
                     ) : (
                         <>

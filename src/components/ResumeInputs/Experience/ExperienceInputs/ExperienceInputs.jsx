@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
 
-const ExperienceInputs = ({ toggleShowForm, saveExperienceList, currentExperience }) => {
+const ExperienceInputs = ({ toggleShowForm, saveExperienceList, currentExperience, saveDisplayExperience, setShowForm }) => {
     const [companyName, setCompanyName] = useState('');
     const [positionTitle, setPositionTitle] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -9,11 +9,10 @@ const ExperienceInputs = ({ toggleShowForm, saveExperienceList, currentExperienc
     const [location, setLocation] = useState('');
     const [description, setDescription] = useState('');
 
-
     useEffect(() => {
         if (currentExperience) {
-            setPositionTitle(currentExperience.positionTitle || '');
             setCompanyName(currentExperience.companyName || '');
+            setPositionTitle(currentExperience.positionTitle || '');
             setStartDate(currentExperience.startDate || '');
             setEndDate(currentExperience.endDate || '');
             setLocation(currentExperience.location || '');
@@ -35,11 +34,11 @@ const ExperienceInputs = ({ toggleShowForm, saveExperienceList, currentExperienc
         setEndDate('');
         setLocation('');
         setDescription('');
-        toggleShowForm();
+        setShowForm(false);
     };
 
     const saveExperience = () => {
-        saveExperienceList({
+        const experienceData = {
             companyName,
             positionTitle,
             startDate,
@@ -47,30 +46,32 @@ const ExperienceInputs = ({ toggleShowForm, saveExperienceList, currentExperienc
             location,
             description,
             id: currentExperience ? currentExperience.id : uuid()
-        });
+        };
+        saveExperienceList(experienceData)
+        saveDisplayExperience(experienceData);
         clearForms();
-        toggleShowForm();
+        setShowForm(false);
     };
 
     return (
         <div className="experience-container">
             <label htmlFor="company-name">Company Name
-                <input type="text" id="company-name" value={companyName} onChange={handleCompanyName} />
+                <input type="text" id="company-name" value={companyName} onChange={handleCompanyName} required />
             </label>
             <label htmlFor="position-title">Position Title
-                <input type="text" id="position-title" value={positionTitle} onChange={handlePositionTitle} />
+                <input type="text" id="position-title" value={positionTitle} onChange={handlePositionTitle} required />
             </label>
             <label htmlFor="start-date">Start Date
-                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} />
+                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
             </label>
             <label htmlFor="end-date">End Date
-                <input type="date" id="end-date" value={endDate} onChange={handleEndDate} />
+                <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
             </label>
             <label htmlFor="location">Location
-                <input type="text" id="location" value={location} onChange={handleLocation} />
+                <input type="text" id="location" value={location} onChange={handleLocation} required />
             </label>
             <label htmlFor="description">Description
-                <input type="text-area" id="description" value={description} onChange={handleDescription} />
+                <textarea id="description" value={description} onChange={handleDescription} required />
             </label>
             <div className="btn-container">
                 <button onClick={clearForms}>Cancel</button>

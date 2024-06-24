@@ -40,23 +40,23 @@ const EducationInputs = ({ setShowForm, saveEducationList, currentEducation, sav
         setDegree('');
         setStartDate('');
         setEndDate('');
-        setShowForm(false)
+        setShowForm(false);
         setCurrentEducation(null);
     };
 
     return (
         <div className="education-container">
             <label htmlFor="school-name">School Name
-                <input type="text" id="school-name" value={schoolName} onChange={handleSchoolName} />
+                <input type="text" id="school-name" value={schoolName} onChange={handleSchoolName} required />
             </label>
             <label htmlFor="degree">Degree/Field of Study
-                <input type="text" id="degree" value={degree} onChange={handleDegree} />
+                <input type="text" id="degree" value={degree} onChange={handleDegree} required />
             </label>
             <label htmlFor="start-date">Start Date
-                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} />
+                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
             </label>
             <label htmlFor="end-date">End Date
-                <input type="date" id="end-date" value={endDate} onChange={handleEndDate} />
+                <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
             </label>
             <div className="btn-container">
                 <button onClick={clearForms}>Cancel</button>

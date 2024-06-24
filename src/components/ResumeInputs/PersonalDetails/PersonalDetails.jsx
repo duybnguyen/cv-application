@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const PersonalDetails = ({ saveDisplayPersonal }) => {
     const [show, setShow] = useState(false);
@@ -48,19 +48,19 @@ const PersonalDetails = ({ saveDisplayPersonal }) => {
             {show && (
                 <form>
                     <label htmlFor="full-name">Full Name
-                        <input type="text" id="full-name" name="fullName" value={fullName} onChange={handleFullName} />
+                        <input type="text" id="full-name" name="fullName" value={fullName} onChange={handleFullName} required/>
                     </label>
 
                     <label htmlFor="email">Email
-                        <input type="email" id="email" name="email" value={email} onChange={handleEmail} />
+                        <input type="email" id="email" name="email" value={email} onChange={handleEmail} required/>
                     </label>
 
                     <label htmlFor="phone-number">Phone Number
-                        <input type="tel" id="phone-number" name="phoneNumber" value={phoneNumber} onChange={handlePhoneNumber} />
+                        <input type="tel" id="phone-number" name="phoneNumber" value={phoneNumber} onChange={handlePhoneNumber} required/>
                     </label>
 
                     <label htmlFor="address">Address
-                        <input type="text" id="address" name="address" value={address} onChange={handleAddress} />
+                        <input type="text" id="address" name="address" value={address} onChange={handleAddress} required/>
                     </label>
                 </form>
             )}
