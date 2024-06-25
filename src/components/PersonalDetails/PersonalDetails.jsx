@@ -1,7 +1,9 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import './PersonalDetails.scss'
+import downArrow from '../../assets/down.png'
 const PersonalDetails = ({ saveDisplayPersonal }) => {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
+    const [imgToggle, setImgToggle] = useState(true)
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -9,40 +11,41 @@ const PersonalDetails = ({ saveDisplayPersonal }) => {
 
 
     const toggleShow = () => {
-        setShow(prevShow => !prevShow);
+        setShow(prev => !prev);
+        setImgToggle(prev => !prev)
     };
-
-    const save = () => {
+    useEffect(() => {
         saveDisplayPersonal({
             fullName,
             email,
             phoneNumber,
             address
-        })
-    }
+        });
+    }, [fullName, email, phoneNumber, address]);
 
     const handleFullName = ({ target }) => {
         setFullName(target.value)
-        save()
+
     };
     const handleEmail = ({ target }) => {
         setEmail(target.value);
-        save()
+
     }
     const handlePhoneNumber = ({ target }) => {
         setPhoneNumber(target.value);
-        save()
+
     }
         
     const handleAddress = ({ target }) => {
         setAddress(target.value)
-        save()
+
     }
 
     return (
-        <div className="show-container">
+        <div className="personal-show-container">
             <div className="show-toggle" onClick={toggleShow}>
                 <h2>Personal Details</h2>
+                <img src={downArrow} alt="down arrow" className={imgToggle ? 'rotate' : 'unrotate'}/>
             </div>
 
             {show && (

@@ -1,15 +1,18 @@
 import { useState } from "react";
 import ExperienceInputs from "./ExperienceInputs/ExperienceInputs";
+import downArrow from '../../assets/down.png'
 import "./Experience.scss"
 
-const Experience = ({saveDisplayExperience}) => {
+const Experience = ({ saveDisplayExperience, deleteDisplayExperience }) => {
     const [show, setShow] = useState(false);
+    const [imgToggle, setImgToggle] = useState(true)
     const [showForm, setShowForm] = useState(false);
     const [experienceList, setExperienceList] = useState([]);
     const [currentExperience, setCurrentExperience] = useState(null);
 
     const toggleShow = () => {
         setShow(prev => !prev);
+        setImgToggle(prev => !prev)
     };
 
     const toggleShowForm = () => {
@@ -29,7 +32,7 @@ const Experience = ({saveDisplayExperience}) => {
                 ...prevExperienceList,
                 obj
             ]);
-        }
+        } 
         toggleShowForm();
     };
 
@@ -37,6 +40,7 @@ const Experience = ({saveDisplayExperience}) => {
         e.stopPropagation()
         const filteredExp = experienceList.filter(edu => edu.id !== id);
         setExperienceList(filteredExp);
+        deleteDisplayExperience(id)
     };
 
     const editExperience = (exp) => {
@@ -45,11 +49,12 @@ const Experience = ({saveDisplayExperience}) => {
     };
 
     return (
-        <div className="show-container">
+        <div className="experience-show-container">
             <div 
                 className="show-toggle"
                 onClick={toggleShow}>
                 <h2>Experience</h2>
+                <img src={downArrow} alt="down arrow" className={imgToggle ? 'unrotate' : 'rotate'} />
             </div>
 
             {show && (
@@ -63,7 +68,6 @@ const Experience = ({saveDisplayExperience}) => {
                         />
                     ) : (
                         <>
-                            {experienceList.length > 0 && (
                                 <div className="experiences-container">
                                     {experienceList.map(exp => (
                                         <div key={exp.id} className="experience-container">
@@ -72,9 +76,8 @@ const Experience = ({saveDisplayExperience}) => {
                                             <button onClick={(e) => deleteExperience(exp.id, e)}>Delete</button>
                                         </div>
                                     ))}
+                                    <button onClick={toggleShowForm} className="add-experience">+ Experience</button>
                                 </div>
-                            )}
-                            <button onClick={toggleShowForm}>+ Experience</button>
                         </>
                     )}
                 </>

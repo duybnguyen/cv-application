@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
-
+import './EducationInputs.scss'
 const EducationInputs = ({ setShowForm, saveEducationList, currentEducation, saveDisplayEducation, setCurrentEducation }) => {
     const [schoolName, setSchoolName] = useState('');
     const [degree, setDegree] = useState('');
@@ -52,14 +52,18 @@ const EducationInputs = ({ setShowForm, saveEducationList, currentEducation, sav
             <label htmlFor="degree">Degree/Field of Study
                 <input type="text" id="degree" value={degree} onChange={handleDegree} required />
             </label>
-            <label htmlFor="start-date">Start Date
-                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
-            </label>
-            <label htmlFor="end-date">End Date
-                <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
-            </label>
+
+            <div className="date-container">
+                <label htmlFor="start-date">Start Date
+                    <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
+                </label>
+                <label htmlFor="end-date">End Date
+                    <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
+                </label>
+            </div>
+
             <div className="btn-container">
-                <button onClick={clearForms}>Cancel</button>
+                <button onClick={clearForms} className="cancel">Cancel</button>
                 <button onClick={saveEducation}>Save</button>
             </div>
         </div>

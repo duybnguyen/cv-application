@@ -3,6 +3,7 @@ import DisplayResume from "./components/DisplayResume/DisplayResume";
 import PersonalDetails from "./components/PersonalDetails/PersonalDetails";
 import Education from "./components/Education/Education";
 import Experience from "./components/Experience/Experience";
+import './App.scss'
 const App = () => {
   const [personalDetailsInfo, setPersonalDetailsInfo] = useState({});
   const [educationInfo, setEducationInfo] = useState([]);
@@ -36,18 +37,36 @@ const App = () => {
     });
   };
 
+  const deleteDisplayEducation = id => {
+    const filteredEducation = educationInfo.filter(edu => edu.id !== id)
+    setEducationInfo(filteredEducation)
+  }
+
+ const deleteDisplayExperience = id => {
+    const filteredExperience = experienceInfo.filter(exp => exp.id !== id)
+    setExperienceInfo(filteredExperience)
+    
+  }
+
   return (
     <div className="app-container">
-      <div className="resume-inputs">
+      <div className="resume-inputs-container">
         <PersonalDetails saveDisplayPersonal={saveDisplayPersonal} />
-        <Education saveDisplayEducation={saveDisplayEducation} />
-        <Experience saveDisplayExperience={saveDisplayExperience} />
+        <Education 
+          saveDisplayEducation={saveDisplayEducation}
+          deleteDisplayEducation={deleteDisplayEducation} />
+        <Experience 
+          saveDisplayExperience={saveDisplayExperience}
+          deleteDisplayExperience={deleteDisplayExperience} />
       </div>
-      <DisplayResume
-        personalDetails={personalDetailsInfo}
-        education={educationInfo}
-        experience={experienceInfo}
-      />
+      <div className="display-resume-container">
+        <DisplayResume
+          personalDetails={personalDetailsInfo}
+          education={educationInfo}
+          experience={experienceInfo}
+        />
+
+      </div>
     </div>
   );
 };

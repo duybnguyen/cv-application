@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
+import './ExperienceInputs.scss'
 
 const ExperienceInputs = ({ saveExperienceList, currentExperience, saveDisplayExperience, setShowForm }) => {
     const [companyName, setCompanyName] = useState('');
@@ -61,12 +62,16 @@ const ExperienceInputs = ({ saveExperienceList, currentExperience, saveDisplayEx
             <label htmlFor="position-title">Position Title
                 <input type="text" id="position-title" value={positionTitle} onChange={handlePositionTitle} required />
             </label>
-            <label htmlFor="start-date">Start Date
-                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
-            </label>
-            <label htmlFor="end-date">End Date
-                <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
-            </label>
+
+            <div className="date-container">
+                <label htmlFor="start-date">Start Date
+                    <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
+                </label>
+                <label htmlFor="end-date">End Date
+                    <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
+                </label>
+            </div>
+
             <label htmlFor="location">Location
                 <input type="text" id="location" value={location} onChange={handleLocation} required />
             </label>
@@ -74,7 +79,7 @@ const ExperienceInputs = ({ saveExperienceList, currentExperience, saveDisplayEx
                 <textarea id="description" value={description} onChange={handleDescription} required />
             </label>
             <div className="btn-container">
-                <button onClick={clearForms}>Cancel</button>
+                <button onClick={clearForms} className="cancel">Cancel</button>
                 <button onClick={saveExperience}>Save</button>
             </div>
         </div>

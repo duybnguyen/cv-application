@@ -1,15 +1,15 @@
-.experience-container {
+.education-container {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
 
     label {
         display: flex;
         flex-direction: column;
-        gap: .2rem;
         font-weight: 500;
+        gap: .2rem;
         
-        input, textarea {
+        input {
             border-radius: .5rem;
             padding: .5rem;
             border: 2px solid black;
@@ -21,7 +21,7 @@
         display: flex;
         gap: 1rem;
         
-        label {
+        input {
             width: 100%;
         }
 
@@ -36,11 +36,5 @@
         button {
             width: 100%;
         }
-
-        .cancel:hover {
-            background-color: #C52233;
-        }
-
-
     }
 }

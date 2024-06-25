@@ -1,15 +1,20 @@
 import { useState } from "react";
 import EducationInputs from "./EducationInputs/EducationInputs";
+import downArrow from '../../assets/down.png'
 import './Education.scss';
 
-const Education = ({saveDisplayEducation}) => {
+const Education = ({ saveDisplayEducation, deleteDisplayEducation }) => {
     const [show, setShow] = useState(false);
+    const [imgToggle, setImgToggle] = useState(false)
     const [showForm, setShowForm] = useState(false);
     const [educationList, setEducationList] = useState([]);
     const [currentEducation, setCurrentEducation] = useState(null);
 
     const toggleShow = () => {
         setShow(prev => !prev);
+        setImgToggle(prev => !prev)
+        setShowForm(false)
+
     };
 
     const toggleShowForm = () => {
@@ -38,6 +43,7 @@ const Education = ({saveDisplayEducation}) => {
         e.stopPropagation()
         const filteredEdu = educationList.filter(edu => edu.id !== id);
         setEducationList(filteredEdu);
+        deleteDisplayEducation(id)
     };
 
     const editEducation = (edu) => {
@@ -46,11 +52,12 @@ const Education = ({saveDisplayEducation}) => {
     };
 
     return (
-        <div className="show-container">
+        <div className="education-show-container">
             <div 
                 className="show-toggle"
                 onClick={toggleShow}>
                 <h2>Education</h2>
+                <img src={downArrow} className={imgToggle ? 'rotate' : 'unrotate'} alt="down arrow" />
             </div>
 
             {show && (
@@ -66,18 +73,16 @@ const Education = ({saveDisplayEducation}) => {
                         />
                     ) : (
                         <>
-                            {educationList.length > 0 && (
-                                <div className="educations-container">
-                                    {educationList.map(edu => (
-                                        <div key={edu.id} className="education-container">
-                                            <h3 onClick={() => editEducation(edu)}>{edu.schoolName}</h3>
-                                            
-                                            <button onClick={(e) => deleteEducation(edu.id, e)}>Delete</button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                            <button onClick={() => setShowForm(true)}>+ Education</button>
+                            <div className="educations-container">
+                                {educationList.map(edu => (
+                                    <div key={edu.id} className="education-container">
+                                        <h3 onClick={() => editEducation(edu)}>{edu.schoolName}</h3>
+                                        
+                                        <button onClick={(e) => deleteEducation(edu.id, e)}>Delete</button>
+                                    </div>
+                                ))}
+                                <button onClick={() => setShowForm(true)} className="add-education">+ Education</button>
+                            </div>
                         </>
                     )}
                 </>
