@@ -65,10 +65,10 @@ const ExperienceInputs = ({ saveExperienceList, currentExperience, saveDisplayEx
 
             <div className="date-container">
                 <label htmlFor="start-date">Start Date
-                    <input type="date" id="start-date" value={startDate} onChange={handleStartDate} required />
+                    <input type="text" id="start-date" value={startDate} onChange={handleStartDate} required />
                 </label>
                 <label htmlFor="end-date">End Date
-                    <input type="date" id="end-date" value={endDate} onChange={handleEndDate} required />
+                    <input type="text" id="end-date" value={endDate} onChange={handleEndDate} required />
                 </label>
             </div>
 
