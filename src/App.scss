@@ -19,6 +19,15 @@ body {
             gap: 1rem;
         }
 
+        .display-resume-container {
+            background-color: white;
+            height: 1000px;
+            max-height: 1200px;
+            box-shadow: 1px 1px 6px lightgray;
+            max-width: 100%;
+            overflow: auto;
+        }
+
     }
 
 }
@@ -31,4 +40,15 @@ body {
 .unrotate {
     transform: rotate(0deg);
     transition: .2s;
+}
+
+
+@keyframes expand {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }

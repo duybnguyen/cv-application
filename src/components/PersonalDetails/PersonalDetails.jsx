@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import './PersonalDetails.scss'
 import downArrow from '../../assets/down.png'
+import personalDetailsImg from '../../assets/personalDetails.png'
+
 const PersonalDetails = ({ saveDisplayPersonal }) => {
     const [show, setShow] = useState(true);
     const [imgToggle, setImgToggle] = useState(true)
@@ -44,8 +46,9 @@ const PersonalDetails = ({ saveDisplayPersonal }) => {
     return (
         <div className="personal-show-container">
             <div className="show-toggle" onClick={toggleShow}>
+                <img src={personalDetailsImg} alt="personal details image" />
                 <h2>Personal Details</h2>
-                <img src={downArrow} alt="down arrow" className={imgToggle ? 'rotate' : 'unrotate'}/>
+                <img src={downArrow} alt="down arrow" className={imgToggle ? 'arrow rotate' : 'arrow unrotate'}/>
             </div>
 
             {show && (

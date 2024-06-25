@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ExperienceInputs from "./ExperienceInputs/ExperienceInputs";
 import downArrow from '../../assets/down.png'
+import experienceImg from '../../assets/experience.png'
+import trashCanImg from '../../assets/trashCan.png'
 import "./Experience.scss"
 
 const Experience = ({ saveDisplayExperience, deleteDisplayExperience }) => {
@@ -53,8 +55,9 @@ const Experience = ({ saveDisplayExperience, deleteDisplayExperience }) => {
             <div 
                 className="show-toggle"
                 onClick={toggleShow}>
+                <img src={experienceImg} alt="experience image" />
                 <h2>Experience</h2>
-                <img src={downArrow} alt="down arrow" className={imgToggle ? 'unrotate' : 'rotate'} />
+                <img src={downArrow} alt="down arrow" className={imgToggle ? 'arrow unrotate' : 'arrow rotate'} />
             </div>
 
             {show && (
@@ -70,10 +73,9 @@ const Experience = ({ saveDisplayExperience, deleteDisplayExperience }) => {
                         <>
                                 <div className="experiences-container">
                                     {experienceList.map(exp => (
-                                        <div key={exp.id} className="experience-container">
-                                            <h3 onClick={() => editExperience(exp)}>{exp.companyName}</h3>
-                                            
-                                            <button onClick={(e) => deleteExperience(exp.id, e)}>Delete</button>
+                                        <div key={exp.id} className="experience-container" onClick={() => editExperience(exp)}>
+                                            <h3>{exp.companyName}</h3>
+                                            <img src={trashCanImg} alt='delete experience' className="delete" onClick={(e) => deleteExperience(exp.id, e)}/>
                                         </div>
                                     ))}
                                     <button onClick={toggleShowForm} className="add-experience">+ Experience</button>

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import EducationInputs from "./EducationInputs/EducationInputs";
 import downArrow from '../../assets/down.png'
+import educationImg from '../../assets/education.png'
+import trashCanImg from '../../assets/trashCan.png'
 import './Education.scss';
 
 const Education = ({ saveDisplayEducation, deleteDisplayEducation }) => {
@@ -56,8 +58,9 @@ const Education = ({ saveDisplayEducation, deleteDisplayEducation }) => {
             <div 
                 className="show-toggle"
                 onClick={toggleShow}>
+                <img src={educationImg} alt="education image" />
                 <h2>Education</h2>
-                <img src={downArrow} className={imgToggle ? 'rotate' : 'unrotate'} alt="down arrow" />
+                <img src={downArrow} className={imgToggle ? 'arrow rotate' : 'arrow unrotate'} alt="down arrow" />
             </div>
 
             {show && (
@@ -75,13 +78,12 @@ const Education = ({ saveDisplayEducation, deleteDisplayEducation }) => {
                         <>
                             <div className="educations-container">
                                 {educationList.map(edu => (
-                                    <div key={edu.id} className="education-container">
-                                        <h3 onClick={() => editEducation(edu)}>{edu.schoolName}</h3>
-                                        
-                                        <button onClick={(e) => deleteEducation(edu.id, e)}>Delete</button>
+                                    <div key={edu.id} className="education-container" onClick={() => editEducation(edu)}>
+                                        <h3>{edu.schoolName}</h3>
+                                        <img src={trashCanImg} alt="trash can image" onClick={(e) => deleteEducation(edu.id, e)} className="delete"></img>
                                     </div>
                                 ))}
-                                <button onClick={() => setShowForm(true)} className="add-education">+ Education</button>
+                                <button onClick={() => setShowForm(true)} className="add-education normal">+ Education</button>
                             </div>
                         </>
                     )}

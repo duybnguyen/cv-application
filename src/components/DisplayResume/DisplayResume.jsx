@@ -1,17 +1,29 @@
+import './DisplayResume.scss'
+import emailImg from '../../assets/email.png'
+import phoneNumberImg from '../../assets/phoneNumber.png'
+import addressImg from '../../assets/address.png'
+
 const DisplayResume = ({ personalDetails, education, experience }) => {
     return (
         <div className="resume-container">
-            <div className="personal-details-container">
-                <h1>{personalDetails.fullName}</h1>
-                <div className="contacts-header">
+            <h1>{personalDetails.fullName}</h1>
+            <div className="contacts-header">
+                <div className="contacts-container">
+                    {personalDetails.email && <img src={emailImg} alt='email image'></img>}
                     <p>{personalDetails.email}</p>
+                </div>
+                <div className="contacts-container">
+                    {personalDetails.phoneNumber && <img src={phoneNumberImg} alt='phone number image'></img>}
                     <p>{personalDetails.phoneNumber}</p>
+                </div>
+                <div className="contacts-container">
+                    {personalDetails.address && <img src={addressImg} alt='address image'></img>}
                     <p>{personalDetails.address}</p>
                 </div>
             </div>
 
             {education.length > 0 && (
-                <div className="educations-container">
+                <div className='educations-container'>
                     <h2>Education</h2>
                     <div className="line-break"></div>
                     {education.map(edu => (

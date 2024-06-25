@@ -6,16 +6,23 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    box-shadow: 2px 2px 4px lightgray;
     
 
     .show-toggle {
         cursor: pointer;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         user-select: none;
-        
+        gap: .5rem;
+
         img {
+            width: 25px;
+            height: 25px;
+        }
+        
+        .arrow {
+            margin-left: auto;
             width: 20px;
             height: 20px;
         }

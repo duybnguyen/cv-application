@@ -1,0 +1,38 @@
+.resume-container {
+    background-color: #0D3B66;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100px;
+    
+    h1 {
+        text-align: center;
+    }
+
+    .contacts-header {
+        display: flex;
+        justify-content: space-evenly;
+
+        .contacts-container {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+    
+    .educations-container {
+        color: black;
+        
+        .education-container {
+            color: black;
+        }
+    }
+
+}
